@@ -71,6 +71,7 @@ I explored the datasets and carried out a preliminary data exploration to assess
 data quality and identify inconsistencies and outliers in the datasets. These issues
 form the base of our data cleaning and transformation.
 The table below outlines the data quality issues.
+
 ![](https://github.com/Willitivity/Sprocket-Central-Marketing-Analysis-/blob/main/Data%20Quality%20Table.jpg)
 
 𝘾𝙪𝙨𝙩𝙤𝙢𝙚𝙧 𝘿𝙚𝙢𝙤𝙜𝙧𝙖𝙥𝙝𝙞𝙘
@@ -78,11 +79,13 @@ The CustomerDemographic dataset has 13 columns and 4000 rows. This dataset
 specifies information concerning the customers under the following headers;
 customer_id, first_name, last_name, gender, past_3_years_bike_related_purchases, DOB, job_title, job_industry_category,
 wealth_segment, deceased_indicator, default, owns_car, tenure.
+
 ![](https://github.com/Willitivity/Sprocket-Central-Marketing-Analysis-/blob/main/Uncleaned%20CustomerDemographic%20Data.png)
 
 𝘾𝙪𝙨𝙩𝙤𝙢𝙚𝙧 𝘼𝙙𝙙𝙧𝙚𝙨𝙨
 This dataset contains six columns specifying information about customers under the following headers; customer_id, address, postcode, state, country, and
 property_valuation.
+
 ![](https://github.com/Willitivity/Sprocket-Central-Marketing-Analysis-/blob/main/Uncleaned%20CustomerAddress%20Data.png)
 
 𝙏𝙧𝙖𝙣𝙨𝙖𝙘𝙩𝙞𝙤𝙣𝙨
@@ -90,6 +93,7 @@ The Transaction dataset contains information about transactions for the year .
 It contains 13 columns and 20,000 rows. The headers are; transaction_id,
 product_id, customer_id, transaction_date, online_order, order_status, brand,
 product_line, product_class, product_size, list_price, standard_cost, product_first_sold_date.
+
 ![](https://github.com/Willitivity/Sprocket-Central-Marketing-Analysis-/blob/main/Uncleaned%20Transactions%20Data.png)
 
 ## DATA TRANSFORMATION 
@@ -102,18 +106,22 @@ done using specialized Excel functions and formulas.
 I did this using the “𝙏𝙍𝙐𝙉𝘾” function. This function uses the DOB column to
 calculate Age. The addition of the Age will help me to group the customers into
 various age groups for the analysis.
-,------coddddeeee
+```=TRUNC(YEARFRAC(F2, TODAY()))```
+
 ![](https://github.com/Willitivity/Sprocket-Central-Marketing-Analysis-/blob/main/Cleaned%20and%20Transformed%20CustomerDemographic%20Data.png)
 
 𝙏𝙧𝙖𝙣𝙨𝙖𝙘𝙩𝙞𝙤𝙣𝙨; 
 * 𝘼𝙙𝙙𝙚𝙙 𝙢𝙤𝙣𝙩𝙝 𝙘𝙤𝙡𝙪𝙢𝙣 
 This was achieved using the “𝙏𝙀𝙓𝙏” function. It generates the month from the date in a specified column. A month column makes it easy to analyze transactions by month and identify the month(s) with the highest or lowest transactions.
+```=TEXT(E2, "mmmm")```
 
 * 𝘼𝙙𝙙𝙚𝙙 𝙥𝙧𝙤𝙛𝙞𝙩 𝙘𝙤𝙡𝙪𝙢𝙣 
 The profit was added by subtracting the standard cost from the list price. The profit column makes it easier in the analysis to identify products, customers, state, and months that generates the most and least profit.
+```=(M2-N2)```
 
 * 𝘼𝙙𝙙𝙚𝙙 𝙨𝙤𝙢𝙚 𝙘𝙤𝙡𝙪𝙢𝙣𝙨 𝙛𝙧𝙤𝙢 𝙩𝙝𝙚 𝙘𝙪𝙨𝙩𝙤𝙢𝙚𝙧 𝙙𝙚𝙢𝙤𝙜𝙧𝙖𝙥𝙝𝙞𝙘 𝙙𝙖𝙩𝙖𝙨𝙚𝙩 
 For the sake of the analysis, some columns were added from the customer demographic dataset to the transactions dataset. I did this by employing the Excel “𝙑𝙇𝙊𝙊𝙆𝙐𝙋” function.
+```=VLOOKUP(C2,CustomerDemographic!A$1:$M$4001,5)```
 
 ![](https://github.com/Willitivity/Sprocket-Central-Marketing-Analysis-/blob/main/Cleaned%20and%20Transformed%20Transactions%20Data.png)
 
